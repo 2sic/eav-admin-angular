@@ -1,0 +1,138 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "eav-information-dialogs": {
+      "root": "projects/eav-information-dialogs/",
+      "sourceRoot": "projects/eav-information-dialogs/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/eav-information-dialogs",
+            "index": "projects/eav-information-dialogs/src/index.html",
+            "main": "projects/eav-information-dialogs/src/main.ts",
+            "polyfills": "projects/eav-information-dialogs/src/polyfills.ts",
+            "tsConfig": "projects/eav-information-dialogs/tsconfig.app.json",
+            "assets": [
+              "projects/eav-information-dialogs/src/favicon.ico",
+              "projects/eav-information-dialogs/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/eav-information-dialogs/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/eav-information-dialogs/src/environments/environment.ts",
+                  "with": "projects/eav-information-dialogs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "eav-information-dialogs:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "eav-information-dialogs:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "eav-information-dialogs:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/eav-information-dialogs/src/test.ts",
+            "polyfills": "projects/eav-information-dialogs/src/polyfills.ts",
+            "tsConfig": "projects/eav-information-dialogs/tsconfig.spec.json",
+            "karmaConfig": "projects/eav-information-dialogs/karma.conf.js",
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/eav-information-dialogs/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/eav-information-dialogs/src/favicon.ico",
+              "projects/eav-information-dialogs/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/eav-information-dialogs/tsconfig.app.json",
+              "projects/eav-information-dialogs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "eav-information-dialogs-e2e": {
+      "root": "projects/eav-information-dialogs-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/eav-information-dialogs-e2e/protractor.conf.js",
+            "devServerTarget": "eav-information-dialogs:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "eav-information-dialogs:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/eav-information-dialogs-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "eav-information-dialogs"
+}
