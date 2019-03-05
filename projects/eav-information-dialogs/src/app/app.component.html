@@ -1,3 +1,22 @@
+
+<div>
+  <h1>test router outlet</h1>
+  <router-outlet></router-outlet>
+</div>
+<div>
+  <h2>links</h2>
+  <ul>
+    <li>
+      <a [routerLink]="['/rest/content-type/blog-post']" routerLinkActive="active">content-type</a>
+    </li>
+    <li>
+        <a [routerLink]="['/rest/item']" routerLinkActive="active">item</a>
+    </li>
+    <li>
+        <a [routerLink]="['/rest/query']" routerLinkActive="active">query</a>
+    </li>
+  </ul>
+</div>
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>

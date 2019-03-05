@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentTypeRestComponent } from './content-type-rest/content-type-rest.component';
 import { ItemRestComponent } from './item-rest/item-rest.component';
 import { QueryRestComponent } from './query-rest/query-rest.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { QueryRestComponent } from './query-rest/query-rest.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
