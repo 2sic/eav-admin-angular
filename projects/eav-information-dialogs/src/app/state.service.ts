@@ -7,7 +7,4 @@ export class StateService {
 
   constructor() { }
 
-  getStorage() {
-    console.log('storage');
-  }
 }
