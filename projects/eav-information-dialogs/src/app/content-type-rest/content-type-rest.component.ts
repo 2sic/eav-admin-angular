@@ -23,6 +23,12 @@ export class ContentTypeRestComponent implements OnInit {
         return params.get('name');
       })
     );
+
+    // console.log(this.route.snapshot.queryParams.test);
+
+    // this.route.queryParams.subscribe(params => {
+    //   console.log(params.test);
+    // });
   }
 
 }

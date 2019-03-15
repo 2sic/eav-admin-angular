@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.queryParams.test);
+
     this.route.queryParams.subscribe(params => {
       console.log(params.test);
     });
