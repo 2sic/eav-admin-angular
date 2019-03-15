@@ -11,18 +11,18 @@ import { Observable } from 'rxjs';
 export class ContentTypeRestComponent implements OnInit {
 
   contentTypeName$: Observable<string>;
+  contentTypeId$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
   ) { }
 
   ngOnInit() {
     this.contentTypeName$ = this.route.paramMap.pipe(
-      map((params: ParamMap) =>
-        params.get('name')
-        // this.service.getHero(params.get('id')))
-    ));
+      map((params: ParamMap) => {
+        return params.get('name');
+      })
+    );
   }
 
 }
