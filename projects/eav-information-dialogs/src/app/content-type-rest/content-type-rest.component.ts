@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-content-type-rest',
@@ -15,6 +16,7 @@ export class ContentTypeRestComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private state: StateService,
   ) { }
 
   ngOnInit() {
@@ -24,11 +26,11 @@ export class ContentTypeRestComponent implements OnInit {
       })
     );
 
-    this.route.queryParams.pipe(
-      // filter(params => params.test)
-    ).subscribe(params => {
-      console.log(params.test);
-    });
+    this.state.param.subscribe(
+      result => {
+        console.log('result', result);
+      }
+    );
   }
 
 }

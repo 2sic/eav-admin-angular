@@ -10,20 +10,17 @@ import { filter } from 'rxjs/operators';
 })
 
 export class AppComponent implements OnInit {
-  title = 'eav-information-dialogs';
-
   constructor(
     private state: StateService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    // console.log(this.route.snapshot.queryParams.test);
-
-    // this.route.queryParams.pipe(
-    //   filter(params => params.test)
-    // ).subscribe(params => {
-    //   console.log(params.test);
-    // });
+    this.route.queryParams.pipe(
+      filter(params => params.key)
+    ).subscribe(params => {
+      console.log(params);
+      this.state.saveParams(params);
+    });
   }
 }
