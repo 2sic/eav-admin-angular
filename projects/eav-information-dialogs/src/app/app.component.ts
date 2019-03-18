@@ -16,11 +16,9 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams.pipe(
-      filter(params => params.key)
-    ).subscribe(params => {
-      console.log(params);
-      this.state.saveParams(params);
+    this.route.queryParams.subscribe(params => {
+        console.log(params);
+        this.state.saveParams(params);
     });
   }
 }

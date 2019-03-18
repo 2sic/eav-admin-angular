@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-query-rest',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryRestComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private state: StateService
+  ) {
+    this.state.getLocalStorageParams();
+  }
 
   ngOnInit() {
   }
