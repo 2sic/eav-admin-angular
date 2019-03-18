@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -24,11 +24,11 @@ export class ContentTypeRestComponent implements OnInit {
       })
     );
 
-    // console.log(this.route.snapshot.queryParams.test);
-
-    // this.route.queryParams.subscribe(params => {
-    //   console.log(params.test);
-    // });
+    this.route.queryParams.pipe(
+      // filter(params => params.test)
+    ).subscribe(params => {
+      console.log(params.test);
+    });
   }
 
 }

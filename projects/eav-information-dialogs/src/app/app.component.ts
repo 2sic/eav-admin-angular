@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { StateService } from './state.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,12 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.queryParams.test);
+    // console.log(this.route.snapshot.queryParams.test);
 
-    this.route.queryParams.subscribe(params => {
-      console.log(params.test);
-    });
+    // this.route.queryParams.pipe(
+    //   filter(params => params.test)
+    // ).subscribe(params => {
+    //   console.log(params.test);
+    // });
   }
 }
