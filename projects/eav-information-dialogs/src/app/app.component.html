@@ -2,7 +2,7 @@
   <router-outlet></router-outlet>
 </div>
 <div>
-  <h2>links</h2>
+  <h2>Test Link</h2>
   <ul>
     <li>
       <a 
@@ -88,5 +88,18 @@
           query
         </a>
     </li>
+    <li>
+      <a href="/?sxcver=9.42.00&systype=dnn&sysver=9.2.2&z=1&a=1&p=1&i=1&c=1&d=false&lc=[de,en]&lui=[de,en]&lp=&rtt=&rtw=%2F&rta=&pop=false&uid=false&uic=false&uis=false">Test Link with all parameters</a>
+    </li>
+    <li>
+      <a href="/?sxcver=9.42.00&systype=dnn&z=1&a=1&p=1&i=1&c=1&d=false&lc=[de,en]&lui=[de,en]&lp=&rtt=&rtw=%2F&rta=&pop=false&uid=false&uic=false&uis=false">Test Link without sysver</a>
+    </li>
   </ul>
+</div>
+
+<div class="debug-content">
+  <h2>Storage</h2>
+  <a href="javascript:void(0)" onclick="window.localStorage.clear(); location.reload();">clear storage</a>
+
+  <ul id="storage-value"></ul>
 </div>

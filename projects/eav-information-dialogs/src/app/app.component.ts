@@ -13,11 +13,13 @@ export class AppComponent implements OnInit {
   constructor(
     private state: StateService,
     private route: ActivatedRoute,
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.route.queryParams.subscribe(params => {
-        this.state.saveParams(params);
+      this.state.saveParams(params);
     });
+  }
+
+  ngOnInit() { 
+    this.state.getLocalStorageParams();
   }
 }
