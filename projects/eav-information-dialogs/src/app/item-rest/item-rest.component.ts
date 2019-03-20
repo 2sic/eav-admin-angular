@@ -10,7 +10,7 @@ export class ItemRestComponent implements OnInit {
 
   constructor(
     private state: StateService
-  ) { 
+  ) {
     this.state.getLocalStorageParams();
   }
 
