@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, map, filter } from 'rxjs/operators';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { StateService } from '../state.service';
 
