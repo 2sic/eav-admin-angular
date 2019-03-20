@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { StateService } from '../state.service';
+import { StateService } from '../../state.service';
 
 @Component({
   selector: 'app-content-type-rest',
