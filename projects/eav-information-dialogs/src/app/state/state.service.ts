@@ -3,85 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 const unknownId = 0;
 const unknownDebug = false;
-
-const initParams = {
-  sxcver: {
-    name: 'sxcVersion',
-    default: '00.00.00'
-  },
-  systype: {
-    name: 'sysType',
-    default: 'dnn'
-  },
-  sysver: {
-    name: 'sysVersion',
-    default: '00.00.00'
-  },
-  z: {
-    name: 'zoneId',
-    default: null
-  },
-  a: {
-    name: 'appId',
-    default: null
-  },
-  p: {
-    name: 'pageId',
-    default: null
-  },
-  i: {
-    name: 'instanceId',
-    default: null
-  },
-  c: {
-    name: 'contentBlockId',
-    default: null
-  },
-  d: {
-    name: 'debug',
-    default: false
-  },
-  lc: {
-    name: 'languagesContent',
-    default: []
-  },
-  lui: {
-    name: 'languagesUi',
-    default: []
-  },
-  lp: {
-    name: 'languagePrimary',
-    default: ''
-  },
-  rtt: {
-    name: 'tenantRoot',
-    default: ''
-  },
-  rtw: {
-    name: 'websiteRoot',
-    default: '/'
-  },
-  rta: {
-    name: 'appRoot',
-    default: ''
-  },
-  pop: {
-    name: 'partOfPage',
-    default: false
-  },
-  uid: {
-    name: 'userIsDesigner',
-    default: false
-  },
-  uic: {
-    name: 'userIsCoder',
-    default: false
-  },
-  uis: {
-    name: 'userIsSuperuser',
-    default: false
-  }
-};
+const unknownString = '';
 
 @Injectable({
   providedIn: 'root'
@@ -98,7 +20,9 @@ export class StateService {
 
   //#region system / environment stuff
   debug = unknownDebug;
-
+  sxcVersion = unknownString;
+  sysVersion = unknownString;
+  sysType = unknownString;
   //#endregion
 
   //#region features
@@ -108,36 +32,30 @@ export class StateService {
   enableSuperUser = false; // not implemented yet
   //#endregion
 
+  //#region paths for linking and api-access
+  rootTenant = unknownString;
+  rootWeb = unknownString;
+  rootApp = unknownString;
+  //#endregion
+
+  //#region context
+  partOfPage: boolean;
+  //#endregion
+
+  //#region languages
+  languagePrimary = unknownString;
+  //#endregion
 
   constructor() { }
 
   putUrlParamsInLocalStorage(paramsObj: any) {
     Object.keys(paramsObj).map((key, index) => {
       const value = paramsObj[key];
-
-      if (typeof initParams[key] === 'undefined') {
-        localStorage.setItem(key, value);
-      } else {
-        const name = initParams[key].name;
-        localStorage.setItem(name, value);
-      }
+      localStorage.setItem(key, value);
     });
 
-    this.checkForDefaultValues();
     this.transferToProperties();
     this.showLocalStorageParams();
-  }
-
-  checkForDefaultValues() {
-    Object.keys(initParams).map(key => {
-      const name = initParams[key].name;
-      // const name = key;
-      const value = initParams[key].default;
-
-      if (localStorage.getItem(name) === null) {
-        localStorage.setItem(name, value);
-      }
-    });
   }
 
   transferToProperties() {
@@ -152,6 +70,9 @@ export class StateService {
 
     //#region environment
     this.debug = this.getLocalStorageParamsByName('debug') === 'true';
+    this.sxcVersion = this.getLocalStorageParamsByName('sxcver') || '00.00.00';
+    this.sysVersion = this.getLocalStorageParamsByName('sysver') || '00.00.00';
+    this.sysType = this.getLocalStorageParamsByName('systype') || 'dnn';
     //#endregion
 
     //#region features
@@ -160,6 +81,19 @@ export class StateService {
     this.enableDesign = this.getLocalStorageParamsByName('fd') === 'true';
     //#endregion
 
+    //#region paths for linking and api-access
+    this.rootTenant = this.getLocalStorageParamsByName('rtt') || unknownString;
+    this.rootWeb = this.getLocalStorageParamsByName('rtw') || unknownString;
+    this.rootApp = this.getLocalStorageParamsByName('rta') || unknownString;
+    //#endregion
+
+    //#region context
+    this.partOfPage = this.getLocalStorageParamsByName('pop') === 'true';
+    //#endregion
+
+    //#region languages
+    this.languagePrimary = this.getLocalStorageParamsByName('lp') || unknownString;
+    //#endregion
   }
 
   getLocalStorageParamsByName(name: string) {
