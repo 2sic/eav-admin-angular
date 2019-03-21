@@ -88,11 +88,14 @@ export class StateService {
 
   saveParams(paramsObj: any) {
     Object.keys(paramsObj).map((key, index) => {
-      // const name = this.initParams[key].name;
-      const name = key;
       const value = paramsObj[key];
 
-      localStorage.setItem(name, value);
+      if (typeof this.initParams[key] === 'undefined') {
+        localStorage.setItem(key, value);
+      } else {
+        const name = this.initParams[key].name;
+        localStorage.setItem(name, value);
+      }
     });
 
     this.getLocalStorageParams();
@@ -100,15 +103,22 @@ export class StateService {
 
   checkForDefaultValues() {
     Object.keys(this.initParams).map(key => {
-      // const name = this.initParams[key].name;
-      const name = key;
+      const name = this.initParams[key].name;
+      // const name = key;
       const value = this.initParams[key].default;
 
       if (localStorage.getItem(name) === null) {
         localStorage.setItem(name, value);
       }
     });
+  }
 
+  getLocalStorageParamsByName(name: string) {
+    if(localStorage.getItem(name) === null){
+      return '';
+    }
+
+    return localStorage.getItem(name);
   }
 
   getLocalStorageParams() {

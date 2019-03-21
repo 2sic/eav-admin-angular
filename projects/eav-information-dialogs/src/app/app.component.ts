@@ -25,4 +25,8 @@ export class AppComponent implements OnInit {
 
     this.state.getLocalStorageParams();
   }
+
+  getLocalStorageParamsByName(name: string) {
+    alert(this.state.getLocalStorageParamsByName(name));
+  }
 }

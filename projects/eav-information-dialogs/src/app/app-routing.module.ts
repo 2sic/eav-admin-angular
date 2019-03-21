@@ -6,7 +6,7 @@ const appRoutes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      useHash: false,
+      useHash: true,
       enableTracing: false // <-- debugging purposes only
     }),
   ],
