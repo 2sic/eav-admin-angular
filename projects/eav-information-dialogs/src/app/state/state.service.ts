@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+const unknownId = 0;
+const unknownDebug = false;
+
 const initParams = {
   sxcver: {
     name: 'sxcVersion',
@@ -86,15 +89,15 @@ const initParams = {
 export class StateService {
 
   //#region basic IDs
-  appId = 0;
-  zoneId = 0;
-  pageId = 0;
-  contentBlockId = 0;
-  instanceId = 0;
+  appId = unknownId;
+  zoneId = unknownId;
+  pageId = unknownId;
+  contentBlockId = unknownId;
+  instanceId = unknownId;
   //#endregion
 
   //#region system / environment stuff
-  debug: boolean;
+  debug = unknownDebug;
 
   //#endregion
 
@@ -120,6 +123,8 @@ export class StateService {
       }
     });
 
+    this.checkForDefaultValues();
+    this.transferToProperties();
     this.showLocalStorageParams();
   }
 
@@ -135,6 +140,28 @@ export class StateService {
     });
   }
 
+  transferToProperties() {
+    // tslint:disable:radix
+    //#region basic IDs
+    this.appId = parseInt(this.getLocalStorageParamsByName('appId')) || unknownId;
+    this.zoneId = parseInt(this.getLocalStorageParamsByName('zoneId')) || unknownId;
+    this.instanceId = parseInt(this.getLocalStorageParamsByName('instanceId')) || unknownId;
+    this.pageId = parseInt(this.getLocalStorageParamsByName('pageId')) || unknownId;
+    this.contentBlockId = parseInt(this.getLocalStorageParamsByName('contentBlockId')) || unknownId;
+    //#endregion
+
+    //#region environment
+    this.debug = this.getLocalStorageParamsByName('debug') === 'true';
+    //#endregion
+
+    //#region features
+    this.enableApp = this.getLocalStorageParamsByName('fa') === 'true';
+    this.enableCode = this.getLocalStorageParamsByName('fc') === 'true';
+    this.enableDesign = this.getLocalStorageParamsByName('fd') === 'true';
+    //#endregion
+
+  }
+
   getLocalStorageParamsByName(name: string) {
     if (localStorage.getItem(name) === null) {
       return '';
@@ -145,7 +172,6 @@ export class StateService {
   // todo: 2ro move to a debug-module, and put this into a view;
   // important: never do DOM manipulations in angular
   showLocalStorageParams() {
-    this.checkForDefaultValues();
 
     const node = document.getElementById('storage-value');
     node.innerHTML = '';
