@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/eav-information-dialogs",
+            "outputPath": "dist/ng-admin",
             "index": "projects/eav-information-dialogs/src/index.html",
             "main": "projects/eav-information-dialogs/src/main.ts",
             "polyfills": "projects/eav-information-dialogs/src/polyfills.ts",
@@ -38,9 +38,9 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
