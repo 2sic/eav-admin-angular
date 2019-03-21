@@ -1,3 +1,23 @@
+<!-- the title should be in the header of the dialog -->
+<h1>Using REST with {{typeName$ | async}}</h1>
 <p>
-  content-type-rest works! for {{contentTypeName$ | async}}
+  All the data in this system can easily be used in JavaScript using a REST API. This information should help you get started. 
 </p>
+<!-- this should look like an important info -->
+<em>Important: As a host-user you can always access these REST endpoints, but if you want to use them in a public UI, you must remember to set the permissions to allow this.</em>
+
+<h2>REST Endpoints for type {{typeName$ | async}}</h2>
+
+todo: dropdown for dnn7/8/9 - build using "environments"
+
+<ul>
+  <li>
+    Read list of all items (test here)<br>
+    <code>GET</code>: <code>{{rootAuto$ | async}}</code>
+  </li>
+  <li>
+    Read list of all items - when not accessing from inside a 2sxc app<br>
+    <code>GET</code>: <code>{{rootNamed$ | async}}</code>
+  </li>
+
+</ul>

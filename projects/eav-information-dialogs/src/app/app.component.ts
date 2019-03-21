@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StateService } from './state.service';
+import { StateService } from './state/state.service';
 import { skip } from 'rxjs/operators';
 
 @Component({
@@ -20,10 +20,10 @@ export class AppComponent implements OnInit {
     this.route.queryParams.pipe(
       skip(1)
     ).subscribe(params => {
-      this.state.saveParams(params);
+      this.state.putUrlParamsInLocalStorage(params);
     });
 
-    this.state.getLocalStorageParams();
+    this.state.showLocalStorageParams();
   }
 
   getLocalStorageParamsByName(name: string) {
