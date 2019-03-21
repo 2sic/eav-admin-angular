@@ -145,10 +145,10 @@ export class StateService {
     })
   }
 
-  getLocalStorageParams() {
-    console.log(localStorage);
+  getLocalStorageParams() { 
     const node = document.getElementById('storage-value');
     node.innerHTML = '';
+    
     Object.keys(localStorage).map((key, index) => {
       const objKey = this.getKeyByValue(this.initParams, key);
       const type = this.initParams[objKey].type;
@@ -175,6 +175,8 @@ export class StateService {
       //   } 
       // }             
     });
+
+    console.log(localStorage);
   }
 
   getKeyByValue(object, value) {
