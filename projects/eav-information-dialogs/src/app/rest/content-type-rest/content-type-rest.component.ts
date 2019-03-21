@@ -17,9 +17,7 @@ export class ContentTypeRestComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private state: StateService,
-  ) {
-    this.state.getLocalStorageParams();
-  }
+  ) { }
 
   ngOnInit() {
     this.contentTypeName$ = this.route.paramMap.pipe(

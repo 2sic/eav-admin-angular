@@ -8,178 +8,122 @@ export class StateService {
   private initParams = {
     sxcver: {
       name: 'sxcVersion',
-      default: '00.00.00',
-      type: 'string'
+      default: '00.00.00'
     },
     systype: {
       name: 'sysType',
-      default: 'dnn',
-      type: 'string'
+      default: 'dnn'
     },
     sysver: {
       name: 'sysVersion',
-      default: '00.00.00',
-      type: 'string'
+      default: '00.00.00'
     },
     z: {
       name: 'zoneId',
-      default: null,
-      type: 'number'
+      default: null
     },
     a: {
       name: 'appId',
-      default: null,
-      type: 'number'
+      default: null
     },
     p: {
       name: 'pageId',
-      default: null,
-      type: 'number'
+      default: null
     },
     i: {
       name: 'instanceId',
-      default: null,
-      type: 'number'
+      default: null
     },
     c: {
       name: 'contentBlockId',
-      default: null,
-      type: 'number'
+      default: null
     },
     d: {
       name: 'debug',
-      default: false,
-      type: 'boolean'
+      default: false
     },
     lc: {
       name: 'languagesContent',
-      default: [],
-      type: 'array'
+      default: []
     },
     lui: {
       name: 'languagesUi',
-      default: [],
-      type: 'array'
+      default: []
     },
     lp: {
       name: 'languagePrimary',
-      default: '',
-      type: 'string'
+      default: ''
     },
     rtt: {
       name: 'tenantRoot',
-      default: '',
-      type: 'string'
+      default: ''
     },
     rtw: {
       name: 'websiteRoot',
-      default: '/',
-      type: 'string'
+      default: '/'
     },
     rta: {
       name: 'appRoot',
-      default: '',
-      type: 'string'
+      default: ''
     },
     pop: {
       name: 'partOfPage',
-      default: false,
-      type: 'boolean'
+      default: false
     },
     uid: {
       name: 'userIsDesigner',
-      default: false,
-      type: 'boolean'
+      default: false
     },
     uic: {
       name: 'userIsCoder',
-      default: false,
-      type: 'boolean'
+      default: false
     },
     uis: {
       name: 'userIsSuperuser',
-      default: false,
-      type: 'boolean'
+      default: false
     }
   };
 
-  constructor() {
-    this.checkForDefaultValues();
-  }
+  constructor() { }
 
   saveParams(paramsObj: any) {
     Object.keys(paramsObj).map((key, index) => {
-      const name = this.initParams[key].name
-      const type = this.initParams[key].type;
-      let value = paramsObj[key];
-
-      if(type === 'array'){
-        value = JSON.stringify(value);
-      }
-
-      if(type === 'boolean'){
-        value = JSON.stringify(value);
-      }
+      // const name = this.initParams[key].name;
+      const name = key;
+      const value = paramsObj[key];
 
       localStorage.setItem(name, value);
     });
+
+    this.getLocalStorageParams();
   }
 
   checkForDefaultValues() {
     Object.keys(this.initParams).map(key => {
-      const name = this.initParams[key].name;
-      const type = this.initParams[key].type;
-      let value = this.initParams[key].default;
+      // const name = this.initParams[key].name;
+      const name = key;
+      const value = this.initParams[key].default;
 
-      if(type === 'array'){
-        value = JSON.stringify(value);
-      }
-
-      if(type === 'boolean'){
-        value = JSON.stringify(value);
-      }
-
-      if(localStorage.getItem(name) === null) {
+      if (localStorage.getItem(name) === null) {
         localStorage.setItem(name, value);
       }
-    })
-  }
-
-  getLocalStorageParams() { 
-    const node = document.getElementById('storage-value');
-    node.innerHTML = '';
-    
-    Object.keys(localStorage).map((key, index) => {
-      const objKey = this.getKeyByValue(this.initParams, key);
-      const type = this.initParams[objKey].type;
-
-      const e = document.createElement('div');
-      e.innerHTML = `<li>${key}: ${localStorage.getItem(key)}</li>`;      
-      node.append(e);
-      // switch(type) { 
-      //   case 'array': { 
-      //     console.log(typeof JSON.parse(localStorage.getItem(key)));
-      //     break; 
-      //   } 
-      //   case 'number': { 
-      //     console.log(typeof parseInt(localStorage.getItem(key)));
-      //     break; 
-      //   } 
-      //   case 'boolean': { 
-      //     console.log(typeof JSON.parse(localStorage.getItem(key)));
-      //     break; 
-      //   } 
-      //   default: { 
-      //     console.log(typeof localStorage.getItem(key));
-      //     break; 
-      //   } 
-      // }             
     });
 
-    console.log(localStorage);
   }
 
-  getKeyByValue(object, value) {
+  getLocalStorageParams() {
+    this.checkForDefaultValues();
+
+    const node = document.getElementById('storage-value');
+    node.innerHTML = '';
+    Object.keys(localStorage).map((key, index) => {
+      const e = document.createElement('div');
+      e.innerHTML = `<li>${key}: ${localStorage.getItem(key)}</li>`;
+      node.append(e);
+    });
+  }
+
+  getKeyByValue(object: object, value: string) {
     return Object.keys(object).find(key => object[key].name === value);
   }
 }

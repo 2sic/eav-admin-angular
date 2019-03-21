@@ -10,9 +10,7 @@ export class QueryRestComponent implements OnInit {
 
   constructor(
     private state: StateService
-  ) {
-    this.state.getLocalStorageParams();
-  }
+  ) { }
 
   ngOnInit() {
   }

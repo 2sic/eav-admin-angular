@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StateService } from './state.service';
-import { filter } from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,15 @@ export class AppComponent implements OnInit {
     private state: StateService,
     private route: ActivatedRoute,
   ) {
-    this.route.queryParams.subscribe(params => {
-      this.state.saveParams(params);
-    });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
+    this.route.queryParams.pipe(
+      skip(1)
+    ).subscribe(params => {
+      this.state.saveParams(params);
+    });
+
     this.state.getLocalStorageParams();
   }
 }
