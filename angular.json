@@ -19,8 +19,8 @@
             "polyfills": "projects/eav-information-dialogs/src/polyfills.ts",
             "tsConfig": "projects/eav-information-dialogs/tsconfig.app.json",
             "assets": [
-              "projects/eav-information-dialogs/src/favicon.ico",
-              "projects/eav-information-dialogs/src/assets"
+              "projects/eav-information-dialogs/src/assets",
+              "projects/eav-information-dialogs/src/ui.html"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
