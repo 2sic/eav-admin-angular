@@ -59,7 +59,6 @@ export class StateService {
     });
 
     this.transferToProperties();
-    // this.showLocalStorageParams();
   }
 
   transferToProperties() {
