@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const appRoutes: Routes = [];
+const appRoutes: Routes = [
+  { path: 'rest', loadChildren: '../rest/rest.module#RestModule'},
+  { path: '', pathMatch: 'full', redirectTo: ''},
+];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      useHash: false,
+      useHash: true,
       enableTracing: false // <-- debugging purposes only
     }),
   ],

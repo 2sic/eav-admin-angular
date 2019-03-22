@@ -5,13 +5,13 @@ import { QueryRestComponent } from './query-rest/query-rest.component';
 import { ContentTypeRestComponent } from './content-type-rest/content-type-rest.component';
 
 const routes: Routes = [
-  { path: 'rest/query', component: QueryRestComponent },
-  { path: 'rest/item', component: ItemRestComponent },
-  { path: 'rest/content-type/:name', component: ContentTypeRestComponent },
+  { path: 'query', component: QueryRestComponent },
+  { path: 'item', component: ItemRestComponent },
+  { path: 'content-type/:name', component: ContentTypeRestComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class RestRoutingModule { }

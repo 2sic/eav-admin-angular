@@ -15,7 +15,6 @@ import { DebugComponent } from './debug/debug/debug.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RestModule,
     AppRoutingModule,
   ],
   providers: [],
