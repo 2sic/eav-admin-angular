@@ -26,14 +26,14 @@ export class AppComponent implements OnInit {
       this.state.putUrlParamsInLocalStorage(params);
     });
 
-    setTimeout(() => {
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '1190px'
-      });
+    // setTimeout(() => {
+    //   const dialogRef = this.dialog.open(DialogComponent, {
+    //     width: '1190px'
+    //   });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    });
+    //   dialogRef.afterClosed().subscribe(result => {
+    //     console.log('The dialog was closed');
+    //   });
+    // });
   }
 }
