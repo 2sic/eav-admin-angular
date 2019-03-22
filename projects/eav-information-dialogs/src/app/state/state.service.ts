@@ -59,7 +59,7 @@ export class StateService {
     });
 
     this.transferToProperties();
-    this.showLocalStorageParams();
+    // this.showLocalStorageParams();
   }
 
   transferToProperties() {
@@ -109,17 +109,13 @@ export class StateService {
     return localStorage.getItem(name);
   }
 
-  // todo: 2ro move to a debug-module, and put this into a view;
-  // important: never do DOM manipulations in angular
-  showLocalStorageParams() {
-
-    const node = document.getElementById('storage-value');
-    node.innerHTML = '';
+  getLocalStorageParams() {
+    const localStorageArr = [];
     Object.keys(localStorage).map((key, index) => {
-      const e = document.createElement('div');
-      e.innerHTML = `<li>${key}: ${localStorage.getItem(key)}</li>`;
-      node.append(e);
+      localStorageArr.push(`${key}: ${localStorage.getItem(key)}`);
     });
+
+    return localStorageArr;
   }
 
   getKeyByValue(object: object, value: string) {

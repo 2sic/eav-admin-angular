@@ -22,11 +22,5 @@ export class AppComponent implements OnInit {
     ).subscribe(params => {
       this.state.putUrlParamsInLocalStorage(params);
     });
-
-    this.state.showLocalStorageParams();
-  }
-
-  getLocalStorageParamsByName(name: string) {
-    alert(this.state.getLocalStorageParamsByName(name));
   }
 }
