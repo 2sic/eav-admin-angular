@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 const unknownId = 0;
 const unknownDebug = false;
 const unknownString = '';
+const unknownVersion = '00.00.00';
+const unknownType = 'dnn';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +46,8 @@ export class StateService {
 
   //#region languages
   languagePrimary = unknownString;
+  languagesContent = unknownString;
+  languagesUi = unknownString;
   //#endregion
 
   constructor() { }
@@ -70,9 +74,9 @@ export class StateService {
 
     //#region environment
     this.debug = this.getLocalStorageParamsByName('debug') === 'true';
-    this.sxcVersion = this.getLocalStorageParamsByName('sxcver') || '00.00.00';
-    this.sysVersion = this.getLocalStorageParamsByName('sysver') || '00.00.00';
-    this.sysType = this.getLocalStorageParamsByName('systype') || 'dnn';
+    this.sxcVersion = this.getLocalStorageParamsByName('sxcver') || unknownVersion;
+    this.sysVersion = this.getLocalStorageParamsByName('sysver') || unknownVersion;
+    this.sysType = this.getLocalStorageParamsByName('systype') || unknownType;
     //#endregion
 
     //#region features
@@ -93,6 +97,8 @@ export class StateService {
 
     //#region languages
     this.languagePrimary = this.getLocalStorageParamsByName('lp') || unknownString;
+    this.languagesContent = this.getLocalStorageParamsByName('lc') || unknownString;
+    this.languagesUi = this.getLocalStorageParamsByName('lui') || unknownString;
     //#endregion
   }
 
