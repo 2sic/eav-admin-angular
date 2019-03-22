@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
@@ -10,11 +11,18 @@ export class DialogComponent implements AfterViewInit  {
   @ViewChild(TemplateRef) ref;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngAfterViewInit() {
-    setTimeout(() => {this.dialog.open(this.ref);}, 0);
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(this.ref);
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(['.']);
+      });
+    });
   }
 
 }
