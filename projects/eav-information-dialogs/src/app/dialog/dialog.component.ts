@@ -21,6 +21,8 @@ export class DialogComponent implements AfterViewInit  {
 
       dialogRef.afterClosed().subscribe(result => {
         this.router.navigate(['.']);
+
+        // 2dm event after closing dialog
       });
     });
   }
