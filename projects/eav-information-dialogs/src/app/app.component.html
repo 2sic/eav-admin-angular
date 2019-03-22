@@ -1,84 +1,11 @@
 <div>
   <router-outlet></router-outlet>
 </div>
-<div>
-  <h2>Test Link</h2>
-  <ul>
-    <li>
-      <a 
-        [routerLink]="['/rest/content-type/blog-post']" 
-        [queryParams]="{ 
-          sxcver: '9.42.00',
-          systype: 'dnn',
-          sysver: '9.2.2',
-          z: 3,
-          a: 3,
-          p: 3,
-          i: 3,
-          c: 3,
-          d: false,
-          lc: ['us','en'],
-          lui: ['us','en'],
-          lp: '',
-          rtt: '',
-          rtw: '/',
-          rta: '',
-          pop: false,
-          uid: true,
-          uic: true,
-          uis: true
-        }"
-        routerLinkActive="active">
-        content-type with parameters
-      </a>
-    </li>
-    <li>
-        <a 
-          [routerLink]="['/rest/item']"
-          routerLinkActive="active">
-          item without parameters
-        </a>
-    </li>
-    <li>
-        <a 
-          [routerLink]="['/rest/query']"
-          [queryParams]="{ 
-            sxcver: '7.42.00',
-            systype: 'dnn',
-            sysver: '7.2.2',
-            z: 4,
-            a: 4,
-            p: 4,
-            i: 4,
-            c: 4,
-            d: false,
-            lp: '',
-            rtt: '',
-            rtw: '/',
-            rta: '',
-            pop: false,
-            uid: false,
-            uic: false,
-            uis: false
-          }"
-          routerLinkActive="active">
-          query with parameters
-        </a>
-    </li>
-    <li>
-      <a href="/#/?sxcver=9.42.00&systype=dnn&sysver=9.2.2&z=1&a=1&p=1&i=1&c=1&d=false&lc=[de,en]&lui=[de,en]&lp=&rtt=&rtw=%2F&rta=&pop=false&uid=false&uic=false&uis=false">Test Link with all parameters</a>
-    </li>
-    <li>
-      <a href="/#/?sxcver=9.42.00&systype=dnn&z=2&a=2&p=2&i=2&c=2&d=true&lc=[de,en]&lui=[de,en]&lp=&rtt=&rtw=%2F&rta=&pop=false&uid=false&uic=false&uis=false">Test Link without sysver</a>
-    </li>
-  </ul>
-</div>
 
-<div class="debug-content">
+<!-- <div class="debug-content">
   <h2>Storage</h2>
-  <a href="javascript:void(0)" onclick="window.localStorage.clear(); location.href='/'">clear storage</a><br />
   <a href="javascript:void(0)" (click)="getLocalStorageParamsByName('sysVersion')">get sysVersion</a><br />
   <a href="javascript:void(0)" (click)="getLocalStorageParamsByName('sxcVersion')">get sxcVersion</a><br />
 
   <ul id="storage-value"></ul>
-</div>
+</div> -->
