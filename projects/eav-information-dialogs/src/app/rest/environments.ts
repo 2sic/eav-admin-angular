@@ -1,19 +1,15 @@
 
-class Environment {
-  key: string;
-  name: string;
-  rootPath: string;
-}
-
 export const Environments: Array<Environment> = [
   {
     key: 'dnn7',
     name: 'DNN 7 or higher',
-    rootPath: '/desktopmodules/2sxc/api/app/'
+    rootPath: '/desktopmodules/2sxc/api/app/',
+    description: 'DNN 7 had a longer API-root path, which still works in later versions of DNN'
   },
   {
     key: 'dnn8',
     name: 'DNN 8 or higher',
-    rootPath: '/api/2sxc/app/'
+    rootPath: '/api/2sxc/app/',
+    description: 'DNN 8+ has a shorter root path, with doesn\'t work in DNN 7'
   }
 ];

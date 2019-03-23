@@ -1,23 +1,72 @@
 <!-- the title should be in the header of the dialog -->
-<h1>Using REST with {{typeName$ | async}}</h1>
-<p>
-  All the data in this system can easily be used in JavaScript using a REST API. This information should help you get started. 
-</p>
-<!-- this should look like an important info -->
-<em>Important: As a host-user you can always access these REST endpoints, but if you want to use them in a public UI, you must remember to set the permissions to allow this.</em>
+<h1>Using REST with <em>{{typeName$ | async}}</em></h1>
+<mat-dialog-content>
+  <p>
+    All the data in this system can easily be used in JavaScript using a REST API. This information should help you get started.
+  </p>
+  <!-- this should look like an important info -->
+  <em>Important: As a host-user you can always access these REST endpoints, but if you want to use them in a public UI, you must remember to set the permissions to allow this.</em>
 
-<h2>REST Endpoints for type {{typeName$ | async}}</h2>
+  <h2>Choose Scenario for using REST</h2>
 
-todo: dropdown for dnn7/8/9 - build using "environments"
+  <mat-form-field>
+    <mat-label>Choose DNN Version</mat-label>
+    <mat-select [value]="system | async" (selectionChange)="system.next($event.value)">
+      <mat-option *ngFor="let env of environments" [value]="env.key">
+        {{env.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    {{ (currentEnv | async)?.description }}
+  </div>
 
-<ul>
-  <li>
-    Read list of all items (test here)<br>
-    <code>GET</code>: <code>{{rootAuto$ | async}}</code>
-  </li>
-  <li>
-    Read list of all items - when not accessing from inside a 2sxc app<br>
-    <code>GET</code>: <code>{{rootNamed$ | async}}</code>
-  </li>
+  <br>
+  <mat-form-field>
+    <mat-label>Choose Scenario</mat-label>
+    <mat-select [value]="scenario | async" (selectionChange)="scenario.next($event.value)">
+      <mat-option *ngFor="let scenario of scenarios" [value]="scenario.key">{{scenario.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <p>
+      {{ (currentScenario | async)?.description }}
+    </p>
+    <p>
+      <em>{{ (currentScenario | async)?.notes }}</em>
+    </p>
+  </div>
 
-</ul>
+
+
+  <h2>REST Endpoints for <em>{{typeName$ | async}}</em> in this scenario</h2>
+
+  <div>
+
+  </div>
+  <ul>
+    <li>
+      Read list of all items<br>
+      <code>GET</code>: <code>{{rootAuto$ | async}}</code> <br>
+      <button mat-raised-button (click)="callApiGet(rootAuto$)">click to execute call</button>
+    </li>
+    <li>
+      Read list of all items - when accessing from outside the 2sxc app <br>
+      <code>GET</code>: <code>{{rootNamed$ | async}}</code> <br>
+      <button mat-raised-button (click)="callApiGet(rootNamed$)">click to execute call</button>
+      <a [href]="rootNamed$ | async" target="_blank">click to open in new window</a>
+    </li>
+    <li>
+      Read a single item TODO
+    </li>
+    <li>
+      Create a single item TODO
+    </li>
+    <li>
+      Update a single item TODO
+    </li>
+    <li>
+      Delete a single item TODO
+    </li>
+  </ul>
+</mat-dialog-content>
