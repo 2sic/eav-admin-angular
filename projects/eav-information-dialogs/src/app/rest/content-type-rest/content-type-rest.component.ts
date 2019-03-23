@@ -1,7 +1,7 @@
 import { AccessScenarios } from './../access-scenarios';
 import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, take, tap } from 'rxjs/operators';
+import { map, take, tap, flatMap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { StateService } from '../../state/state.service';
 import { Environments } from '../environments';
@@ -34,10 +34,16 @@ export class ContentTypeRestComponent implements OnInit {
   currentScenario = this.scenario.pipe(map(s => AccessScenarios.find(as => as.key === s)));
 
   /** root path for auto-app-detection */
-  rootAuto$: Observable<string>;
+  // rootAuto$: Observable<string>;
 
   /** root path for named apps */
-  rootNamed$: Observable<string>;
+  // rootNamed$: Observable<string>;
+
+  /** The root path for the current request */
+  root$: Observable<string>;
+
+  showEnvHelp = false;
+  showAccessHelp = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,7 +77,7 @@ export class ContentTypeRestComponent implements OnInit {
       })
     );
 
-    this.rootAuto$ = rootWithoutApp$.pipe(
+    const rootAuto$ = rootWithoutApp$.pipe(
       map(r => r.replace('{appname}', 'auto'))
     );
 
@@ -81,9 +87,17 @@ export class ContentTypeRestComponent implements OnInit {
       appPath.lastIndexOf('/') + 1,
       appPath.length
     );
-    this.rootNamed$ = rootWithoutApp$.pipe(
-      map(r => r.replace('{appname}', appName))
-    );
+    // const rootNamed$ = rootWithoutApp$.pipe(
+    //   map(r => r.replace('{appname}', appName))
+    // );
+
+    this.root$ = this.currentScenario.pipe(
+      flatMap(scen => scen === AccessScenarios[0]
+        ? rootAuto$
+        : rootWithoutApp$.pipe(
+            map(r => r.replace('{appname}', appName))
+          ))
+        );
 
     // testing
     this.system.subscribe(s => console.log('system changed to:' + s));
