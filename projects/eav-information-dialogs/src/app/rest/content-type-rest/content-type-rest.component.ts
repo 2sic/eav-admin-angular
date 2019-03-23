@@ -1,5 +1,5 @@
 import { AccessScenarios } from './../access-scenarios';
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, take, tap, flatMap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
@@ -8,7 +8,7 @@ import { Environments } from '../environments';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 
-const pathToContent = '{appname}/content/{typename}';
+const pathToContent = 'app/{appname}/content/{typename}';
 
 @Component({
   selector: 'app-content-type-rest',
@@ -19,25 +19,23 @@ export class ContentTypeRestComponent implements OnInit {
   /** name of the type to show REST infos about */
   typeName$: Observable<string>;
 
-  // contentTypeId$: Observable<string>;
-
   /** list of all known environments */
   environments = Environments;
+
+  /** list of all known scenarios */
   scenarios = AccessScenarios;
 
-  /** currently selected system, needed for calculating correct urls */
-  system = new BehaviorSubject<string>(Environments[0].key);
+  /** currently selected environment-key, needed for calculating correct urls */
+  envKey = new BehaviorSubject<string>(Environments[0].key);
 
-  currentEnv = this.system.pipe(map(s => Environments.find(e => e.key === s)));
+  /** currently selected environment object */
+  currentEnv = this.envKey.pipe(map(s => Environments.find(e => e.key === s)));
 
   scenario = new BehaviorSubject<string>(AccessScenarios[0].key);
   currentScenario = this.scenario.pipe(map(s => AccessScenarios.find(as => as.key === s)));
 
-  /** root path for auto-app-detection */
-  // rootAuto$: Observable<string>;
-
-  /** root path for named apps */
-  // rootNamed$: Observable<string>;
+  /** true if we're showing the short-url */
+  virtualUrl = new BehaviorSubject<boolean>(true);
 
   /** The root path for the current request */
   root$: Observable<string>;
@@ -65,42 +63,32 @@ export class ContentTypeRestComponent implements OnInit {
       })
     );
 
-    const rootWithoutApp$ = combineLatest(
-      this.typeName$,
-      this.system.asObservable()
-    ).pipe(
-      map(([t, s]) => {
-        return (
-          Environments.find(e => e.key === s).rootPath +
-          pathToContent.replace('{typename}', t)
-        );
-      })
-    );
-
-    const rootAuto$ = rootWithoutApp$.pipe(
-      map(r => r.replace('{appname}', 'auto'))
-    );
-
     // extract real app-name from the app-path and provide it in the named-root
     const appPath = this.state.rootApp || '/put-app-name-here/';
     const appName = appPath.substring(
       appPath.lastIndexOf('/') + 1,
       appPath.length
     );
-    // const rootNamed$ = rootWithoutApp$.pipe(
-    //   map(r => r.replace('{appname}', appName))
-    // );
 
-    this.root$ = this.currentScenario.pipe(
-      flatMap(scen => scen === AccessScenarios[0]
-        ? rootAuto$
-        : rootWithoutApp$.pipe(
-            map(r => r.replace('{appname}', appName))
-          ))
-        );
+    this.root$ = combineLatest(
+      this.typeName$,
+      this.envKey.asObservable(),
+      this.currentScenario,
+      this.virtualUrl
+    ).pipe(
+      map(([t, s, scen, virt]) => {
+        // tslint:disable-next-line:quotemark
+        return (virt ? "" : Environments.find(e => e.key === s).rootPath)
+            + pathToContent
+              .replace('{typename}', t)
+              .replace('{appname}', scen === AccessScenarios[0] ? 'auto' : appName);
+      })
+    );
 
-    // testing
-    this.system.subscribe(s => console.log('system changed to:' + s));
+  }
+
+  switchTabs(index: number) {
+    this.virtualUrl.next(index === 0);
   }
 
   callApiGet(url: Observable<string>) {
