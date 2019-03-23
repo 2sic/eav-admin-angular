@@ -1,39 +1,66 @@
 <!-- the title should be in the header of the dialog -->
-<h1>Using REST with <em>{{typeName$ | async}}</em></h1>
+<h1>
+  Using REST with <em>{{ typeName$ | async }}</em>
+</h1>
 <mat-dialog-content>
   <p>
-    All the data in this system can easily be used in JavaScript using a REST API. This information should help you get started.
+    All the data in this system can easily be used in JavaScript using a REST
+    API. This information should help you get started.
   </p>
   <p>
     <!-- this should look like an important info -->
-    <em>Important: As a host-user you can always access these REST endpoints, but if you want to use them in a public UI, you must remember to set the permissions to allow this.</em>
+    <em>
+      Important: As a host-user you can always access these REST endpoints, but
+      if you want to use them in a public UI, you must remember to set the
+      permissions to allow this.
+    </em>
   </p>
 
   <div>
     <mat-form-field>
-      <mat-label>Choose DNN Version</mat-label>
-      <mat-select [value]="envKey | async" (selectionChange)="envKey.next($event.value)">
-        <mat-option *ngFor="let env of environments" [value]="env.key">
-          {{env.name}}
-        </mat-option>
+      <mat-label>Choose Scenario</mat-label>
+      <mat-select
+        [value]="scenario | async"
+        (selectionChange)="scenario.next($event.value)"
+      >
+        <mat-option *ngFor="let scenario of scenarios" [value]="scenario.key">{{
+          scenario.label
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-icon-button color="primary" (click)="showEnvHelp = !showEnvHelp">
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="showAccessHelp = !showAccessHelp"
+    >
       <mat-icon>help</mat-icon>
     </button>
 
-    <mat-form-field>
-      <mat-label>Choose Scenario</mat-label>
-      <mat-select [value]="scenario | async" (selectionChange)="scenario.next($event.value)">
-        <mat-option *ngFor="let scenario of scenarios" [value]="scenario.key">{{scenario.label}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-icon-button color="primary" (click)="showAccessHelp = !showAccessHelp">
+    <!-- only show dnn-version if not accessing from internal -->
+    <ng-container *ngIf="(scenario | async) !== 'internal'">
+      <mat-form-field>
+        <mat-label>Choose DNN Version</mat-label>
+        <mat-select
+          [value]="envKey | async"
+          (selectionChange)="envKey.next($event.value)"
+        >
+          <mat-option *ngFor="let env of environments" [value]="env.key">
+            {{ env.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="showEnvHelp = !showEnvHelp"
+      >
         <mat-icon>help</mat-icon>
       </button>
+    </ng-container>
   </div>
+
   <div *ngIf="showEnvHelp">
-      {{ (currentEnv | async)?.description }}
+    {{ (currentEnv | async)?.description }}
   </div>
   <div *ngIf="showAccessHelp">
     <p>
@@ -44,66 +71,114 @@
     </p>
   </div>
 
-  <mat-tab-group (selectedTabChange)="switchTabs($event.index)">
-    <mat-tab label="Virtual REST URLs">
-      <ng-template matTabContent>
-        <div>
-          Virtual REST URLs are shorter URLs, which are automatically resolved to the full length (based on the dnn-version, current portal, etc.) thanks to $2sxc. This happens when you use the <a href="https://github.com/2sic/2sxc/wiki/javascript-sxc-webapi" target="_blank">$2sxc.webApi(...)</a> or if you use <a href="https://www.npmjs.com/package/@2sic.com/dnn-sxc-angular" target="_blank">dnn-sxc-angular (npm package)</a> (which also passes url-resolving through $2sxc).
-        </div>
+  <ng-container
+    *ngIf="(scenario | async) === 'internal'; then internal; else external"
+  ></ng-container>
 
-        <ng-container *ngTemplateOutlet="restUrls"></ng-container>
-      </ng-template>
-    </mat-tab>
+  <ng-template #internal>
+    <mat-tab-group>
+      <mat-tab label="Virtual REST URLs">
+        <ng-template matTabContent>
+          <div>
+            Virtual REST URLs are shorter URLs, which are automatically resolved
+            to the full length (based on the dnn-version, current portal, etc.)
+            thanks to $2sxc. This happens when you use the
+            <a
+              href="https://github.com/2sic/2sxc/wiki/javascript-sxc-webapi"
+              target="_blank"
+              >$2sxc.webApi(...)</a
+            >
+            or if you use
+            <a
+              href="https://www.npmjs.com/package/@2sic.com/dnn-sxc-angular"
+              target="_blank"
+              >dnn-sxc-angular (npm package)</a
+            >
+            (which also passes url-resolving through $2sxc).
+          </div>
 
-    <mat-tab label="Full REST URLs">
-      <ng-template matTabContent>
-        <ng-container *ngTemplateOutlet="restUrls"></ng-container>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="JS Calls using $2sxc">
-      <ng-template matTabContent>
-        Todo
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="JS Calls using jQuery">
-      <ng-template matTabContent>
-        Todo
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
+          <ng-container *ngTemplateOutlet="restUrls"></ng-container>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="JS Calls using $2sxc">
+        <ng-template matTabContent>
+          Todo
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-template>
+
+  <ng-template #external>
+    <mat-tab-group>
+      <mat-tab label="Full REST URLs">
+        <ng-template matTabContent>
+          <ng-container *ngTemplateOutlet="restUrls"></ng-container>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="JS Calls using $2sxc">
+        <ng-template matTabContent>
+          Todo
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-template>
 
   <ng-template #restUrls>
-    <ul>
-      <li>
-        Read list of all items<br>
-        <code>GET</code>: <code>{{root$ | async}}</code> <br>
-        <button mat-raised-button (click)="callApiGet(root$)">click to execute call</button>
-        <a *ngIf="(currentScenario | async)?.key === 'external'"
-          [href]="root$ | async" target="_blank">
-          click to open in new window
+    <mat-list>
+      <mat-list-item>
+        <h3 matLine>Read list of all items</h3>
+        <div matLine>
+          <code>GET</code>: <code>{{ root$ | async }}</code>
+        </div>
+        <button mat-raised-button (click)="callApiGet(root$)">
+          execute call
+        </button>
+        <a
+          *ngIf="(currentScenario | async)?.key === 'external'"
+          [href]="root$ | async"
+          target="_blank"
+        >
+          open
         </a>
-      </li>
-      <li>
-        Read a single item #27 <br>
-        <code>GET</code>: <code>{{root$ | async}}/27</code> <br>
-        <button mat-raised-button (click)="callApiGet(root$, '27')">click to execute call</button>
-        <a *ngIf="(currentScenario | async)?.key === 'external'"
-          [href]="root$ | async" target="_blank">
-          click to open in new window
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>Read a single item #27</h3>
+        <div matLine>
+          <code>GET</code>: <code>{{ root$ | async }}/27</code>
+        </div>
+        <button mat-raised-button (click)="callApiGet(root$, '27')">
+          execute call
+        </button>
+        <a
+          *ngIf="(currentScenario | async)?.key === 'external'"
+          [href]="root$ | async"
+          target="_blank"
+        >
+          open
         </a>
-      </li>
-      <li>
-        Create an item <br>
-        <code>POST</code>: <code>{{root$ | async}}</code> <br>
-      </li>
-      <li>
-        Update the item #27 <br>
-        <code>POST</code>: <code>{{root$ | async}}/27</code> <br>
-      </li>
-      <li>
-        Delete the item #27 <br>
-        <code>DELETE</code>: <code>{{root$ | async}}/27</code> <br>
-      </li>
-    </ul>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>Create an item</h3>
+        <div matLine>
+          <code>POST</code>: <code>{{ root$ | async }}</code>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>Update the item #27</h3>
+        <div matLine>
+          <code>POST</code>: <code>{{ root$ | async }}/27</code>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>Delete the item #27</h3>
+        <div matLine>
+          <code>DELETE</code>: <code>{{ root$ | async }}/27</code>
+        </div>
+      </mat-list-item>
+    </mat-list>
   </ng-template>
 </mat-dialog-content>

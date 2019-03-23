@@ -35,12 +35,15 @@ export class ContentTypeRestComponent implements OnInit {
   currentScenario = this.scenario.pipe(map(s => AccessScenarios.find(as => as.key === s)));
 
   /** true if we're showing the short-url */
-  virtualUrl = new BehaviorSubject<boolean>(true);
+  // virtualUrl = new BehaviorSubject<boolean>(true);
 
   /** The root path for the current request */
   root$: Observable<string>;
 
+  /** show help text for the environment dropdown */
   showEnvHelp = false;
+
+  /** show help text for the access-type dropdown */
   showAccessHelp = false;
 
   constructor(
@@ -74,22 +77,22 @@ export class ContentTypeRestComponent implements OnInit {
       this.typeName$,
       this.envKey.asObservable(),
       this.currentScenario,
-      this.virtualUrl
+      // this.virtualUrl
     ).pipe(
-      map(([t, s, scen, virt]) => {
-        // tslint:disable-next-line:quotemark
-        return (virt ? "" : Environments.find(e => e.key === s).rootPath)
+      map(([t, s, scen]) => {
+        const internal = scen === AccessScenarios[0];
+        return (internal ? '' : Environments.find(e => e.key === s).rootPath)
             + pathToContent
               .replace('{typename}', t)
-              .replace('{appname}', scen === AccessScenarios[0] ? 'auto' : appName);
+              .replace('{appname}', internal ? 'auto' : appName);
       })
     );
 
   }
 
-  switchTabs(index: number) {
-    this.virtualUrl.next(index === 0);
-  }
+  // switchTabs(index: number) {
+  //   this.virtualUrl.next(index === 0);
+  // }
 
   callApiGet(url: Observable<string>) {
     url.pipe(
