@@ -1,3 +1,4 @@
+// import { MaterialModule } from './material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -19,6 +20,7 @@ import { DialogModule } from './dialog/dialog.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     DialogModule,
+    // MaterialModule,
     MatDialogModule
   ],
   providers: [],

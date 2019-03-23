@@ -22,7 +22,11 @@ export class DialogComponent implements AfterViewInit  {
       dialogRef.afterClosed().subscribe(result => {
         this.router.navigate(['.']);
 
-        // 2dm event after closing dialog
+        try {
+          (window.parent as any).$2sxc.totalPopup.close();
+        } catch (error) {
+          // ignore
+        }
       });
     });
   }
