@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueryRestComponent } from './query.component';
+import { RestQueryComponent } from './query.component';
 
 describe('QueryRestComponent', () => {
-  let component: QueryRestComponent;
-  let fixture: ComponentFixture<QueryRestComponent>;
+  let component: RestQueryComponent;
+  let fixture: ComponentFixture<RestQueryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QueryRestComponent ]
+      declarations: [ RestQueryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QueryRestComponent);
+    fixture = TestBed.createComponent(RestQueryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,3 @@
-// import { MaterialModule } from './material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -8,21 +7,23 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { DebugComponent } from './debug/debug/debug.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogModule } from './dialog/dialog.module';
+import { HelpPopupComponent } from './help-popup/help-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DebugComponent,
     DialogComponent,
+    HelpPopupComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     DialogModule,
-    // MaterialModule,
     MatDialogModule
   ],
+  entryComponents: [HelpPopupComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

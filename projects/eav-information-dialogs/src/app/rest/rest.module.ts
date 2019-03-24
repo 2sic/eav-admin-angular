@@ -1,17 +1,21 @@
+import { ScenarioSelectorComponent } from './scenario-selector/scenario-selector.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestRoutingModule } from './rest-routing.module';
-import { ContentTypeRestComponent } from './content-type/content-type.component';
-import { QueryRestComponent } from './query/query.component';
-import { ItemRestComponent } from './item/item.component';
+import { RestContentTypeComponent } from './content-type/content-type.component';
+import { RestQueryComponent } from './query/query.component';
+import { RestItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
+import { EnvironmentSelectorComponent } from './environment-selector/environment-selector.component';
 
 @NgModule({
   declarations: [
-    ContentTypeRestComponent,
-    QueryRestComponent,
-    ItemRestComponent,
+    RestContentTypeComponent,
+    RestQueryComponent,
+    RestItemComponent,
+    EnvironmentSelectorComponent,
+    ScenarioSelectorComponent
   ],
   imports: [
     CommonModule,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestContentTypeComponent } from './content-type.component';
+import { HelpPopupDialog } from './help-popup.component';
 
-describe('ContentTypeRestComponent', () => {
-  let component: RestContentTypeComponent;
-  let fixture: ComponentFixture<RestContentTypeComponent>;
+describe('HelpPopupComponent', () => {
+  let component: HelpPopupDialog;
+  let fixture: ComponentFixture<HelpPopupDialog>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestContentTypeComponent ]
+      declarations: [ HelpPopupDialog ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestContentTypeComponent);
+    fixture = TestBed.createComponent(HelpPopupDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

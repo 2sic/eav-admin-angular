@@ -1,5 +1,5 @@
 <!-- the title should be in the header of the dialog -->
-<h1>
+<h1 mat-dialog-title>
   Using REST with <em>{{ typeName$ | async }}</em>
 </h1>
 <mat-dialog-content>
@@ -17,6 +17,9 @@
   </p>
 
   <div>
+    new
+    <app-scenario-selector #scenarioPicker></app-scenario-selector>
+    endnew
     <mat-form-field>
       <mat-label>Choose Scenario</mat-label>
       <mat-select
@@ -52,7 +55,7 @@
       <button
         mat-icon-button
         color="primary"
-        (click)="showEnvHelp = !showEnvHelp"
+        (click)="showInfo = !showInfo"
       >
         <mat-icon>help</mat-icon>
       </button>
@@ -62,7 +65,7 @@
   <div *ngIf="showEnvHelp">
     {{ (currentEnv | async)?.description }}
   </div>
-  <div *ngIf="showAccessHelp">
+  <div *ngIf="showInfo">
     <p>
       {{ (currentScenario | async)?.description }}
     </p>

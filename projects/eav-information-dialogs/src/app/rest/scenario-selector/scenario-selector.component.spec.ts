@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestContentTypeComponent } from './content-type.component';
+import { ScenarioSelectorComponent } from './scenario-selector.component';
 
-describe('ContentTypeRestComponent', () => {
-  let component: RestContentTypeComponent;
-  let fixture: ComponentFixture<RestContentTypeComponent>;
+describe('ScenarioSelectorComponent', () => {
+  let component: ScenarioSelectorComponent;
+  let fixture: ComponentFixture<ScenarioSelectorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestContentTypeComponent ]
+      declarations: [ ScenarioSelectorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestContentTypeComponent);
+    fixture = TestBed.createComponent(ScenarioSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

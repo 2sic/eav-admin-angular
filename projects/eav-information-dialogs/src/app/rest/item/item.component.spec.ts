@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemRestComponent } from './item.component';
+import { RestItemComponent } from './item.component';
 
 describe('ItemRestComponent', () => {
-  let component: ItemRestComponent;
-  let fixture: ComponentFixture<ItemRestComponent>;
+  let component: RestItemComponent;
+  let fixture: ComponentFixture<RestItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemRestComponent ]
+      declarations: [ RestItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemRestComponent);
+    fixture = TestBed.createComponent(RestItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

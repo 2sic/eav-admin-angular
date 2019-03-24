@@ -1,21 +1,22 @@
 import { AccessScenarios } from '../access-scenarios';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, take, tap, flatMap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { StateService } from '../../state/state.service';
 import { Environments } from '../environments';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { ScenarioSelectorComponent } from '../scenario-selector/scenario-selector.component';
 
 const pathToContent = 'app/{appname}/content/{typename}';
 
 @Component({
-  selector: 'app-content-type-rest',
+  // selector: 'app-rest-content-type',
   templateUrl: './content-type.component.html',
   styleUrls: ['./content-type.component.css']
 })
-export class ContentTypeRestComponent implements OnInit {
+export class RestContentTypeComponent implements OnInit, AfterViewInit {
   /** name of the type to show REST infos about */
   typeName$: Observable<string>;
 
@@ -34,9 +35,6 @@ export class ContentTypeRestComponent implements OnInit {
   scenario = new BehaviorSubject<string>(AccessScenarios[0].key);
   currentScenario = this.scenario.pipe(map(s => AccessScenarios.find(as => as.key === s)));
 
-  /** true if we're showing the short-url */
-  // virtualUrl = new BehaviorSubject<boolean>(true);
-
   /** The root path for the current request */
   root$: Observable<string>;
 
@@ -46,6 +44,8 @@ export class ContentTypeRestComponent implements OnInit {
   /** show help text for the access-type dropdown */
   showAccessHelp = false;
 
+  @ViewChild('scenarioPicker') scenarioPicker: ScenarioSelectorComponent;
+
   constructor(
     private route: ActivatedRoute,
     private state: StateService,
@@ -54,6 +54,11 @@ export class ContentTypeRestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.wireUpObservables();
+  }
+
+  ngAfterViewInit() {
+    this.currentScenario = this.scenarioPicker.current$;
     this.wireUpObservables();
   }
 
@@ -89,10 +94,6 @@ export class ContentTypeRestComponent implements OnInit {
     );
 
   }
-
-  // switchTabs(index: number) {
-  //   this.virtualUrl.next(index === 0);
-  // }
 
   callApiGet(url: Observable<string>) {
     url.pipe(
