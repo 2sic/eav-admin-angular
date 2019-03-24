@@ -5,7 +5,7 @@
     (selectionChange)="selectCurrent($event.value)"
   >
     <mat-option *ngFor="let scenario of scenarios" [value]="scenario.key">{{
-      scenario.label
+      scenario.name
     }}</mat-option>
   </mat-select>
 </mat-form-field>

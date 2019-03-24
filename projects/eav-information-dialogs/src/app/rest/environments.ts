@@ -1,3 +1,4 @@
+import { Environment } from './environment';
 
 export const Environments: Array<Environment> = [
   {

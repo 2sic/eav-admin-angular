@@ -1,7 +1,5 @@
+import { SelectorData } from './selector-data';
 
-class Environment {
-  key: string;
-  name: string;
+export interface Environment extends SelectorData {
   rootPath: string;
-  description: string;
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { take } from 'rxjs/operators';
 import { HelpPopupComponent } from '../../help-popup/help-popup.component';
+import { SelectorData } from '../selector-data';
 
 @Component({
   selector: 'app-scenario-selector',
@@ -16,7 +17,7 @@ export class ScenarioSelectorComponent implements OnInit {
   scenarios = AccessScenarios;
 
   /** currently selected scenario */
-  current$ = new BehaviorSubject<AccessScenario>(AccessScenarios[0]);
+  current$ = new BehaviorSubject<SelectorData>(AccessScenarios[0]);
 
   constructor(public dialog: MatDialog) { }
 
@@ -31,7 +32,7 @@ export class ScenarioSelectorComponent implements OnInit {
     this.current$.pipe(take(1)).subscribe(scenario => {
       this.dialog.open(HelpPopupComponent, {
         width: '500px',
-        data: {name: scenario.label, body: scenario.description, notes: scenario.notes }
+        data: {name: scenario.name, body: scenario.description, notes: scenario.notes }
       });
     });
   }

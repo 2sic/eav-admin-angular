@@ -1,6 +1,6 @@
-class AccessScenario {
-  key: string;
-  label: string;
-  description: string;
-  notes: string;
-}
+// class AccessScenario {
+//   key: string;
+//   name: string;
+//   description: string;
+//   notes: string;
+// }
