@@ -17,10 +17,8 @@
   </p>
 
   <div>
-    new
     <app-scenario-selector #scenarioPicker></app-scenario-selector>
-    endnew
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>Choose Scenario</mat-label>
       <mat-select
         [value]="scenario | async"
@@ -37,10 +35,10 @@
       (click)="showAccessHelp = !showAccessHelp"
     >
       <mat-icon>help</mat-icon>
-    </button>
+    </button> -->
 
     <!-- only show dnn-version if not accessing from internal -->
-    <ng-container *ngIf="(scenario | async) !== 'internal'">
+    <ng-container *ngIf="(currentScenario | async)?.key !== 'internal'">
       <mat-form-field>
         <mat-label>Choose DNN Version</mat-label>
         <mat-select
