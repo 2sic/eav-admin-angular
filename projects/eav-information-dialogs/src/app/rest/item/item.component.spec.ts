@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemRestComponent } from './item-rest.component';
+import { ItemRestComponent } from './item.component';
 
 describe('ItemRestComponent', () => {
   let component: ItemRestComponent;

@@ -3,8 +3,8 @@ import { StateService } from '../../state/state.service';
 
 @Component({
   selector: 'app-item-rest',
-  templateUrl: './item-rest.component.html',
-  styleUrls: ['./item-rest.component.css']
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css']
 })
 export class ItemRestComponent implements OnInit {
 

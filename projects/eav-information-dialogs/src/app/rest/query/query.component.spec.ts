@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueryRestComponent } from './query-rest.component';
+import { QueryRestComponent } from './query.component';
 
 describe('QueryRestComponent', () => {
   let component: QueryRestComponent;

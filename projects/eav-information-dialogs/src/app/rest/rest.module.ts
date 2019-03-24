@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestRoutingModule } from './rest-routing.module';
-import { ContentTypeRestComponent } from './content-type-rest/content-type-rest.component';
-import { QueryRestComponent } from './query-rest/query-rest.component';
-import { ItemRestComponent } from './item-rest/item-rest.component';
+import { ContentTypeRestComponent } from './content-type/content-type.component';
+import { QueryRestComponent } from './query/query.component';
+import { ItemRestComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
 

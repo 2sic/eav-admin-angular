@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StateService } from '../../state/state.service';
 
 @Component({
-  selector: 'app-query-rest',
-  templateUrl: './query-rest.component.html',
-  styleUrls: ['./query-rest.component.css']
+  selector: 'app-query',
+  templateUrl: './query.component.html',
+  styleUrls: ['./query.component.css']
 })
 export class QueryRestComponent implements OnInit {
 

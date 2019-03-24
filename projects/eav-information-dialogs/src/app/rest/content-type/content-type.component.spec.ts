@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentTypeRestComponent } from './content-type-rest.component';
+import { ContentTypeRestComponent } from './content-type.component';
 
 describe('ContentTypeRestComponent', () => {
   let component: ContentTypeRestComponent;

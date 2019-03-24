@@ -1,4 +1,4 @@
-import { AccessScenarios } from './../access-scenarios';
+import { AccessScenarios } from '../access-scenarios';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, take, tap, flatMap } from 'rxjs/operators';
@@ -12,8 +12,8 @@ const pathToContent = 'app/{appname}/content/{typename}';
 
 @Component({
   selector: 'app-content-type-rest',
-  templateUrl: './content-type-rest.component.html',
-  styleUrls: ['./content-type-rest.component.css']
+  templateUrl: './content-type.component.html',
+  styleUrls: ['./content-type.component.css']
 })
 export class ContentTypeRestComponent implements OnInit {
   /** name of the type to show REST infos about */
