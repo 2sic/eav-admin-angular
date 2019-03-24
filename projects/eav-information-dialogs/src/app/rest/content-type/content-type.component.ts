@@ -23,17 +23,13 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
   /** list of all known environments */
   environments = Environments;
 
-  /** list of all known scenarios */
-  // scenarios = AccessScenarios;
-
   /** currently selected environment-key, needed for calculating correct urls */
   envKey = new BehaviorSubject<string>(Environments[0].key);
 
   /** currently selected environment object */
   currentEnv = this.envKey.pipe(map(s => Environments.find(e => e.key === s)));
 
-  // scenario = new BehaviorSubject<string>(AccessScenarios[0].key);
-  currentScenario: Observable<AccessScenario>;// = this.scenario.pipe(map(s => AccessScenarios.find(as => as.key === s)));
+  currentScenario: Observable<AccessScenario>;
 
   /** The root path for the current request */
   root$: Observable<string>;
@@ -82,7 +78,6 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
       this.typeName$,
       this.envKey.asObservable(),
       this.currentScenario,
-      // this.virtualUrl
     ).pipe(
       map(([t, s, scen]) => {
         const internal = scen === AccessScenarios[0];
