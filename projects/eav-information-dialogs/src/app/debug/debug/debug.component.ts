@@ -15,11 +15,12 @@ export class DebugComponent implements OnInit {
     private state: StateService,
     private router: Router
   ) {
-    router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      setTimeout(() => this.localStorageArr = this.state.getLocalStorageParams());
-    });
+    this.localStorageArr = this.state.getLocalStorageParams()
+    // router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
+    //   setTimeout(() => this.localStorageArr = this.state.getLocalStorageParams());
+    // });
   }
 
   ngOnInit() {

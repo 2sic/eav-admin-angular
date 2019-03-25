@@ -7,12 +7,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './routing/app-routing.module';
-import { DebugComponent } from './debug/debug/debug.component';
+// import { DebugComponent } from './debug/debug/debug.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogModule } from './dialog/dialog.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DnnInterceptor, DevContext } from '@2sic.com/dnn-sxc-angular';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
+import { SourceEditorModule } from './source-editor/source-editor.module';
 
 const providers: Provider[] = [
   DnnInterceptor
@@ -25,7 +26,7 @@ if (!environment.production) {
 @NgModule({
   declarations: [
     AppComponent,
-    DebugComponent,
+    // DebugComponent,
     DialogComponent,
   ],
   imports: [
@@ -36,7 +37,8 @@ if (!environment.production) {
     HttpClientModule,
     MatDialogModule,
     MaterialModule,
-    LibraryModule
+    LibraryModule,
+    SourceEditorModule
   ],
   entryComponents: [],
   providers,
