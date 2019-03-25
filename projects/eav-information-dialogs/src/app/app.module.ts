@@ -1,3 +1,5 @@
+import { MiniPartsModule } from './mini-parts/mini-parts.module';
+import { MaterialModule } from './material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,14 +16,15 @@ import { HelpPopupComponent } from './help-popup/help-popup.component';
     AppComponent,
     DebugComponent,
     DialogComponent,
-    HelpPopupComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     DialogModule,
-    MatDialogModule
+    MatDialogModule,
+    MaterialModule,
+    MiniPartsModule
   ],
   entryComponents: [HelpPopupComponent],
   providers: [],

@@ -1,4 +1,9 @@
-import { Environment } from './environment';
+import { SelectorData } from '../mini-parts/selector-observable/selector-data';
+
+export interface Environment extends SelectorData {
+  rootPath: string;
+}
+
 
 export const Environments: Array<Environment> = [
   {

@@ -17,7 +17,10 @@
   </p>
 
   <div>
-    <app-scenario-selector #scenarioPicker></app-scenario-selector>
+    <app-selector-observable #scenarioPicker
+      label="Choose Scenario"
+      [items]="scenarios"
+    ></app-selector-observable>
 
     <!-- only show dnn-version if not accessing from internal -->
     <ng-container *ngIf="(currentScenario | async)?.key !== 'internal'">

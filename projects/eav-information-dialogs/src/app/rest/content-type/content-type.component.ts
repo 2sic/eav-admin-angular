@@ -7,8 +7,8 @@ import { StateService } from '../../state/state.service';
 import { Environments } from '../environments';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { ScenarioSelectorComponent } from '../scenario-selector/scenario-selector.component';
-import { SelectorData } from '../selector-data';
+import { SelectorObservableComponent } from '../../mini-parts/selector-observable/selector-observable.component';
+import { SelectorData } from '../../mini-parts/selector-observable/selector-data';
 
 const pathToContent = 'app/{appname}/content/{typename}';
 
@@ -30,6 +30,7 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
   /** currently selected environment object */
   currentEnv = this.envKey.pipe(map(s => Environments.find(e => e.key === s)));
 
+  scenarios = AccessScenarios;
   currentScenario: Observable<SelectorData>;
 
   /** The root path for the current request */
@@ -41,7 +42,7 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
   /** show help text for the access-type dropdown */
   showAccessHelp = false;
 
-  @ViewChild('scenarioPicker') scenarioPicker: ScenarioSelectorComponent;
+  @ViewChild('scenarioPicker') scenarioPicker: SelectorObservableComponent;
 
   constructor(
     private route: ActivatedRoute,

@@ -21,7 +21,8 @@ const matModules = [
   ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: matModules,
   exports: matModules
 })

@@ -1,11 +1,11 @@
 <mat-form-field>
-  <mat-label>Choose Scenario</mat-label>
+  <mat-label>{{label}}</mat-label>
   <mat-select
     [value]="(current$ | async)?.key"
     (selectionChange)="selectCurrent($event.value)"
   >
-    <mat-option *ngFor="let scenario of scenarios" [value]="scenario.key">{{
-      scenario.name
+    <mat-option *ngFor="let item of items" [value]="item.key">{{
+      item.name
     }}</mat-option>
   </mat-select>
 </mat-form-field>

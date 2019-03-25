@@ -1,4 +1,4 @@
-import { SelectorData } from './selector-data';
+import { SelectorData } from '../mini-parts/selector-observable/selector-data';
 
 export const AccessScenarios: Array<SelectorData> = [
   {
