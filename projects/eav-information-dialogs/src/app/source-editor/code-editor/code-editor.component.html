@@ -1,3 +1,6 @@
 <p>
   code-editor works!
 </p>
+<div class="my-ace-wrapper">
+  <ngx-ace [(ngModel)]="content" (ready)="onEditorReady($event)"></ngx-ace>
+</div>

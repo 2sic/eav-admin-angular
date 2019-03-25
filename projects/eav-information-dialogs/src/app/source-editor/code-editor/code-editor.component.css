@@ -1,0 +1,18 @@
+.my-ace-wrapper {
+  height: 400px;
+  border: 1px solid #DDD;
+}
+
+/* helper to ensure that razor (which is correctly detected by ACE) is also highlighted */
+.ace_razor {
+  background-color: yellow;
+}
+
+/* make sure the highlighted text is also black, otherwise it a kind of gray */
+.ace_punctuation.ace_short.ace_razor {
+  color: black;
+}
+
+.ace_punctuation.ace_block.ace_razor {
+  color: black;
+}
