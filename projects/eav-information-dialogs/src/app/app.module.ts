@@ -1,4 +1,4 @@
-import { MiniPartsModule } from './mini-parts/mini-parts.module';
+import { LibraryModule } from './library/library.module';
 import { MaterialModule } from './material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,7 +9,6 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { DebugComponent } from './debug/debug/debug.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogModule } from './dialog/dialog.module';
-import { HelpPopupComponent } from './help-popup/help-popup.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,9 @@ import { HelpPopupComponent } from './help-popup/help-popup.component';
     DialogModule,
     MatDialogModule,
     MaterialModule,
-    MiniPartsModule
+    LibraryModule
   ],
-  entryComponents: [HelpPopupComponent],
+  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })

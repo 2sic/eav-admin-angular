@@ -22,8 +22,14 @@
       [items]="scenarios"
     ></app-selector-observable>
 
+    <app-selector-observable #environmentPicker
+      [hidden]="(currentScenario | async)?.key === 'internal'"
+      label="Choose DNN Version"
+      [items]="environments"
+    ></app-selector-observable>
+
     <!-- only show dnn-version if not accessing from internal -->
-    <ng-container *ngIf="(currentScenario | async)?.key !== 'internal'">
+    <!-- <ng-container *ngIf="(currentScenario | async)?.key !== 'internal'">
       <mat-form-field>
         <mat-label>Choose DNN Version</mat-label>
         <mat-select
@@ -42,11 +48,7 @@
       >
         <mat-icon>help</mat-icon>
       </button>
-    </ng-container>
-  </div>
-
-  <div *ngIf="showEnvHelp">
-    {{ (currentEnv | async)?.description }}
+    </ng-container> -->
   </div>
 
   <ng-container

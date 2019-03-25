@@ -1,3 +1,4 @@
+import { Environment } from './../environments';
 import { AccessScenarios } from '../access-scenarios';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -7,8 +8,8 @@ import { StateService } from '../../state/state.service';
 import { Environments } from '../environments';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { SelectorObservableComponent } from '../../mini-parts/selector-observable/selector-observable.component';
-import { SelectorData } from '../../mini-parts/selector-observable/selector-data';
+import { SelectorObservableComponent } from '../../library/selector-observable/selector-observable.component';
+import { SelectorData } from '../../library/selector-observable/selector-data';
 
 const pathToContent = 'app/{appname}/content/{typename}';
 
@@ -18,31 +19,26 @@ const pathToContent = 'app/{appname}/content/{typename}';
   styleUrls: ['./content-type.component.css']
 })
 export class RestContentTypeComponent implements OnInit, AfterViewInit {
+  @ViewChild('scenarioPicker') scenarioPicker: SelectorObservableComponent;
+  @ViewChild('environmentPicker') envPicker: SelectorObservableComponent;
+
   /** name of the type to show REST infos about */
   typeName$: Observable<string>;
 
   /** list of all known environments */
   environments = Environments;
 
-  /** currently selected environment-key, needed for calculating correct urls */
-  envKey = new BehaviorSubject<string>(Environments[0].key);
-
   /** currently selected environment object */
-  currentEnv = this.envKey.pipe(map(s => Environments.find(e => e.key === s)));
+  currentEnv: Observable<SelectorData>;
 
+  /** list of scenarios */
   scenarios = AccessScenarios;
+
+  /** currently selected scenario */
   currentScenario: Observable<SelectorData>;
 
   /** The root path for the current request */
   root$: Observable<string>;
-
-  /** show help text for the environment dropdown */
-  showEnvHelp = false;
-
-  /** show help text for the access-type dropdown */
-  showAccessHelp = false;
-
-  @ViewChild('scenarioPicker') scenarioPicker: SelectorObservableComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,11 +48,11 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    // this.wireUpObservables();
   }
 
   ngAfterViewInit() {
     this.currentScenario = this.scenarioPicker.current$;
+    this.currentEnv = this.envPicker.current$;
     this.wireUpObservables();
   }
 
@@ -78,12 +74,12 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
 
     this.root$ = combineLatest(
       this.typeName$,
-      this.envKey.asObservable(),
+      this.currentEnv,
       this.currentScenario,
     ).pipe(
       map(([t, s, scen]) => {
         const internal = scen === AccessScenarios[0];
-        return (internal ? '' : Environments.find(e => e.key === s).rootPath)
+        return (internal ? '' : (s as Environment).rootPath)
             + pathToContent
               .replace('{typename}', t)
               .replace('{appname}', internal ? 'auto' : appName);

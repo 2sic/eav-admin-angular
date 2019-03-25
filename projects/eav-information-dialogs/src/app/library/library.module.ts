@@ -1,5 +1,5 @@
-import { MaterialModule } from './../material/material.module';
-import { HelpPopupComponent } from './../help-popup/help-popup.component';
+import { MaterialModule } from '../material/material.module';
+import { HelpPopupComponent } from './help-popup/help-popup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectorObservableComponent } from './selector-observable/selector-observable.component';
@@ -13,9 +13,12 @@ import { SelectorObservableComponent } from './selector-observable/selector-obse
     CommonModule,
     MaterialModule
   ],
+  entryComponents: [
+    HelpPopupComponent
+  ],
   exports: [
     HelpPopupComponent,
     SelectorObservableComponent
   ]
 })
-export class MiniPartsModule { }
+export class LibraryModule { }

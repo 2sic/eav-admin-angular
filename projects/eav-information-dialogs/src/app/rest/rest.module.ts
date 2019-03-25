@@ -1,4 +1,4 @@
-import { MiniPartsModule } from './../mini-parts/mini-parts.module';
+import { LibraryModule } from '../library/library.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestRoutingModule } from './rest-routing.module';
@@ -21,7 +21,7 @@ import { MaterialModule } from '../material/material.module';
     RestRoutingModule,
     MaterialModule,
     HttpClientModule,
-    MiniPartsModule
+    LibraryModule
   ]
 })
 export class RestModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { take } from 'rxjs/operators';
-import { HelpPopupComponent } from '../../help-popup/help-popup.component';
+import { HelpPopupComponent } from '../help-popup/help-popup.component';
 import { SelectorData } from './selector-data';
 
 @Component({
