@@ -7,7 +7,12 @@ import { SnippetsComponent } from './snippets/snippets.component';
 import { SourceEditorRoutingModule } from './source-editor.routing.module';
 
 @NgModule({
-  declarations: [SourceEditorComponent, FilesComponent, CodeEditorComponent, SnippetsComponent],
+  declarations: [
+    SourceEditorComponent,
+    FilesComponent,
+    CodeEditorComponent,
+    SnippetsComponent
+  ],
   imports: [
     CommonModule,
     SourceEditorRoutingModule

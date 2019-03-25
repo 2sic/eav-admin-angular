@@ -4,8 +4,16 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { SourceEditorComponent } from '../source-editor/source-editor.component';
 
 const appRoutes: Routes = [
-  { path: 'dialog', component: DialogComponent, loadChildren: '../dialog/dialog.module#DialogModule'},
-  { path: 'source', component: SourceEditorComponent},
+  {
+    path: 'dialog',
+    component: DialogComponent,
+    loadChildren: '../dialog/dialog.module#DialogModule'
+  },
+  {
+    path: 'source',
+    component: SourceEditorComponent,
+    loadChildren: '../source-editor/source-editor.module#SourceEditorModule'
+  },
   { path: '', pathMatch: 'full', redirectTo: ''},
 ];
 

@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StateService } from './state/state.service';
 import { skip } from 'rxjs/operators';
-// import { MatDialog } from '@angular/material/dialog';
 import { DnnAppComponent, Context } from '@2sic.com/dnn-sxc-angular';
 
 @Component({
@@ -17,7 +16,6 @@ implements OnInit {
   constructor(
     private state: StateService,
     private route: ActivatedRoute,
-    // public dialog: MatDialog,
     el: ElementRef,
     context: Context
   ) {
