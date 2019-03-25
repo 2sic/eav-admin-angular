@@ -63,7 +63,33 @@
       </mat-tab>
       <mat-tab label="JS Calls using $2sxc">
         <ng-template matTabContent>
-          Todo
+          <p>
+              First you must get the <code>sxc</code> controller for the current module instance.
+              The easiest way is to let <code>$2sxc</code> find it, by giving it a html-tag before running any additional code.
+              $2sxc will then automatically look up everything and return a fully configured controller.
+              Note that this is just an example, you will probably do this differently and not use a global variable (bad practice).
+          </p>
+          <pre>
+// this assumes a tag like &lt;div id='myGalleryTag'&gt; in your code
+var mySxc = $2sxc(document.getElementById('myGalleryTag'));
+          </pre>
+
+          <p>
+            Then...
+          </p>
+          <pre>
+
+/** get all items - this returns a promise
+  * so you can do getAll().then(...)
+  */
+function getAll() {{ '{' }}
+  return mySxc.webApi.get('');
+{{ '}' }}
+
+function getOne(id) {{ '{' }}
+  return mySxc.webApi.get('' + '/' + id);
+{{ '}' }}
+          </pre>
         </ng-template>
       </mat-tab>
     </mat-tab-group>
@@ -78,7 +104,7 @@
       </mat-tab>
       <mat-tab label="JS Calls using $2sxc">
         <ng-template matTabContent>
-          Todo
+todo
         </ng-template>
       </mat-tab>
     </mat-tab-group>
