@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StateService } from './state/state.service';
 import { skip } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+// import { MatDialog } from '@angular/material/dialog';
+import { DnnAppComponent, Context } from '@2sic.com/dnn-sxc-angular';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,17 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent
+extends DnnAppComponent
+implements OnInit {
   constructor(
     private state: StateService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    // public dialog: MatDialog,
+    el: ElementRef,
+    context: Context
   ) {
+    super(el, context);
   }
 
   ngOnInit() {
