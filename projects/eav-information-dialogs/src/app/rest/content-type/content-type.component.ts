@@ -1,6 +1,6 @@
 import { Environment } from './../environments';
 import { AccessScenarios } from '../access-scenarios';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, take, tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
@@ -40,20 +40,27 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
   /** The root path for the current request */
   root$: Observable<string>;
 
+  modeInternal = true;
+
   constructor(
     private route: ActivatedRoute,
     private state: StateService,
     private snackBar: MatSnackBar,
-    private http: HttpClient
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
   }
 
+  /** attach things we couldn't before the parts were assembled */
   ngAfterViewInit() {
     this.currentScenario = this.scenarioPicker.current$;
     this.currentEnv = this.envPicker.current$;
+    this.currentScenario.subscribe(cs => this.modeInternal = cs.key === 'internal');
     this.wireUpObservables();
+    // explicitly declare that we made changes
+    this.cdRef.detectChanges();
   }
 
   /** setup all observables */
