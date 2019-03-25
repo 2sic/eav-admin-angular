@@ -31,6 +31,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "dist/ng-admin-prod",
               "fileReplacements": [
                 {
                   "replace": "projects/eav-information-dialogs/src/environments/environment.ts",
@@ -41,11 +42,13 @@
               "outputHashing": "none",
               "sourceMap": true,
               "extractCss": false,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
+              "vendorSourceMap": false,
+              "statsJson": false,
               "budgets": [
                 {
                   "type": "initial",
