@@ -10,10 +10,11 @@ import { NgxAceModule, NGX_ACE_OPTIONS, INgxAceOptions } from '@nowzoo/ngx-ace';
 // import { aceOptions } from './code-editor/ace-options';
 
 const aceOptions: INgxAceOptions = {
-  aceURL: '//cdn.jsdelivr.net/ace/1.2.6/noconflict/',
+  aceURL: '//cdnjs.cloudflare.com/ajax/libs/ace/1.4.3',
   defaultEditorOptions: {
     theme: 'ace/theme/sqlserver',
-    // showLineNumbers: true,
+    showLineNumbers: true,
+    useSoftTabs: true,
   }
 };
 

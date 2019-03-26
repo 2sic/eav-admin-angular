@@ -15,12 +15,15 @@ export class CodeEditorComponent implements OnInit {
   }
 
   onEditorReady(editor) {
-    console.log('editor:', editor);
     // editor is an instance of Ace.Editor
     this.editor = editor;
+    // editor.setReadOnly(false);
+    // editor.setWrapMode(true);
     this.editor.setOptions({
-      mode: 'ace/mode/razor',
-      theme: 'ace/theme/sqlserver'
+      // mode: 'ace/mode/razor',
+      // theme: 'ace/theme/sqlserver',
+      // wrapMode: true,
+      maxLines: 30
     });
   }
 }
