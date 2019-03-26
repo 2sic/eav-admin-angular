@@ -1,6 +1,14 @@
 <p>
   code-editor works!
+  <button (click)='enter()'>enter</button>
 </p>
 <div class="my-ace-wrapper">
-  <ngx-ace [(ngModel)]="content" (ready)="onEditorReady($event)"></ngx-ace>
+  <ngx-ace [(ngModel)]="content" (ready)="onEditorReady($event)" class="ace-editor"></ngx-ace>
+</div>
+<div >
+  before
+<pre #ace class="my-ace-wrapper">
+{{content}}
+</pre>
+after
 </div>
