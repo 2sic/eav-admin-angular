@@ -52,12 +52,11 @@ export class StateService {
 
   constructor() { }
 
-  putUrlParamsInLocalStorage(paramsArray: any) {
-    localStorage.setItem(paramsArray[0], paramsArray[1]);
-    // Object.keys(paramsObj).map((key, index) => {
-    //   const value = paramsObj[key];
-    //   localStorage.setItem(key, value);
-    // });
+  putUrlParamsInLocalStorage(paramsObj: any) {
+    Object.keys(paramsObj).map((key, index) => {
+      const value = paramsObj[key];
+      localStorage.setItem(key, value);
+    });
 
     this.transferToProperties();
   }
