@@ -1,10 +1,10 @@
-import { DevContext } from '@2sic.com/dnn-sxc-angular';
+import { RuntimeSettings } from '@2sic.com/dnn-sxc-angular';
 
-const set = new DevContext();
+const set = new RuntimeSettings();
 set.ignoreMissing$2sxc = true;
 set.ignoreMissingServicesFramework = true;
 set.moduleId = 27;
 set.path = '/desktopmodules/2sxc/api/';
-set.forceUse = true;
+// set.forceUse = true;
 
 export const DnnDevSettings = set;

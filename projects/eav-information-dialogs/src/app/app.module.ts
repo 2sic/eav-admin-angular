@@ -11,7 +11,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogModule } from './dialog/dialog.module';
 import { HttpClientModule } from '@angular/common/http';
-import { DnnInterceptor, DevContext } from '@2sic.com/dnn-sxc-angular';
+import { DnnInterceptor, RuntimeSettings } from '@2sic.com/dnn-sxc-angular';
 import { DnnDevSettings } from './dev/dnn-dev-settings';
 import { SourceEditorModule } from './source-editor/source-editor.module';
 
@@ -20,7 +20,7 @@ const providers: Provider[] = [
 ];
 
 if (!environment.production) {
-  providers.push({ provide: DevContext, useValue: DnnDevSettings });
+  providers.push({ provide: RuntimeSettings, useValue: DnnDevSettings });
 }
 
 @NgModule({
