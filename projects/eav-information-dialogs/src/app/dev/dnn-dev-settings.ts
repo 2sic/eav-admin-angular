@@ -5,6 +5,6 @@ set.ignoreMissing$2sxc = true;
 set.ignoreMissingServicesFramework = true;
 set.moduleId = 27;
 set.path = '/desktopmodules/2sxc/api/';
-// set.forceUse = true;
+set.appNameInPath = 'blog';
 
 export const DnnDevSettings = set;
