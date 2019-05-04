@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { StateService } from './state/state.service';
-import { filter, skip } from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 import { DnnAppComponent, Context } from '@2sic.com/dnn-sxc-angular';
 
 @Component({
@@ -19,7 +19,7 @@ implements OnInit {
     el: ElementRef,
     context: Context
   ) {
-    super(el, context);
+    super(el, context, false);
   }
 
   ngOnInit() {

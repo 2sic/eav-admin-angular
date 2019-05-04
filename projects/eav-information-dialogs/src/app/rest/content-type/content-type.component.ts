@@ -48,7 +48,9 @@ export class RestContentTypeComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+    console.log('debug http', http);
+  }
 
   ngOnInit() {
   }

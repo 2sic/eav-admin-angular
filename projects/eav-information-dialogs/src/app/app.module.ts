@@ -26,7 +26,6 @@ if (!environment.production) {
 @NgModule({
   declarations: [
     AppComponent,
-    // DebugComponent,
     DialogComponent,
   ],
   imports: [
