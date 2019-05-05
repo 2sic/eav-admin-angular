@@ -20,8 +20,8 @@ set.ignoreMissingServicesFramework = true;
 set.path = 'http://2sxc-dnn-742.dnndev.me/DesktopModules/2sxc/API/';
 
 // The module and tab id to get data from
-set.moduleId = 2363;
-set.tabId = 1103;
+set.moduleId = 3002; // dnn local dev blog module
+set.tabId = 680; // dnn local dev blog page
 
 
 // In most of the cases, you won't need to set this as it's the same as the module id
