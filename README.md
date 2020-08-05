@@ -1,4 +1,6 @@
-# Eav Admin Dialogs
+# OBSOLETE Eav Admin Dialogs
+
+This project is now obsolete, the admin-ui is now part of the main dialogs project. 
 
 ## Purpose
 
